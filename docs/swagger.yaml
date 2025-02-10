@@ -1,0 +1,124 @@
+basePath: /api
+definitions:
+  models.BlogPost:
+    properties:
+      body:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - body
+    - description
+    - title
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: A simple blog API
+  title: Blog API
+  version: "1.0"
+paths:
+  /api/blog-post:
+    get:
+      description: Get a list of all blog posts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.BlogPost'
+            type: array
+      summary: Get all blog posts
+      tags:
+      - blog-posts
+    post:
+      consumes:
+      - application/json
+      description: Create a new blog post with the given input data
+      parameters:
+      - description: Blog post object
+        in: body
+        name: blogPost
+        required: true
+        schema:
+          $ref: '#/definitions/models.BlogPost'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.BlogPost'
+      summary: Create a new blog post
+      tags:
+      - blog-posts
+  /api/blog-post/{id}:
+    delete:
+      description: Delete a blog post by its ID
+      parameters:
+      - description: Blog post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+      summary: Delete a blog post
+      tags:
+      - blog-posts
+    get:
+      description: Get a single blog post by its ID
+      parameters:
+      - description: Blog post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.BlogPost'
+      summary: Get a blog post by ID
+      tags:
+      - blog-posts
+    patch:
+      consumes:
+      - application/json
+      description: Update a blog post by its ID
+      parameters:
+      - description: Blog post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Blog post object
+        in: body
+        name: blogPost
+        required: true
+        schema:
+          $ref: '#/definitions/models.BlogPost'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.BlogPost'
+      summary: Update a blog post
+      tags:
+      - blog-posts
+swagger: "2.0"
