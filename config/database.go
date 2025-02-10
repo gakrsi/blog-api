@@ -16,7 +16,7 @@ var DB *gorm.DB
 func ConnectDB() {
     dsn := os.Getenv("DATABASE_URL")
     if dsn == "" {
-        dsn = "host=localhost user=travlouser password=tz1rx2ac3vv4lb5on6 dbname=travlodb1 port=5432 sslmode=disable"
+        dsn = "host=dpg-cukru3d2ng1s7380epjg-a.oregon-postgres.render.com user=blogapiuser password=SeW0D4uRbVRJDliDdzIsp3L3cZgwDqig dbname=blogapi_ntkd port=5432 sslmode=disable"
     }
     var err error
     DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
