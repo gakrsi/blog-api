@@ -1,13 +1,16 @@
 {
+    "schemes": [
+        "https"
+    ],
     "swagger": "2.0",
     "info": {
-        "description": "A simple blog API",
+        "description": "Blog API with CRUD Operations",
         "title": "Blog API",
         "contact": {},
         "version": "1.0"
     },
-    "host": "localhost:3000",
-    "basePath": "/api",
+    "host": "blog-api-dag9.onrender.com",
+    "basePath": "/",
     "paths": {
         "/api/blog-post": {
             "get": {
@@ -50,7 +53,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.BlogPost"
+                            "$ref": "#/definitions/models.BlogPostInput"
                         }
                     }
                 ],
@@ -58,7 +61,7 @@
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/models.BlogPost"
+                            "$ref": "#/definitions/models.BlogPostInput"
                         }
                     }
                 }
@@ -157,11 +160,6 @@
     "definitions": {
         "models.BlogPost": {
             "type": "object",
-            "required": [
-                "body",
-                "description",
-                "title"
-            ],
             "properties": {
                 "body": {
                     "type": "string"
@@ -179,6 +177,25 @@
                     "type": "string"
                 },
                 "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BlogPostInput": {
+            "type": "object",
+            "required": [
+                "body",
+                "description",
+                "title"
+            ],
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "title": {
                     "type": "string"
                 }
             }
