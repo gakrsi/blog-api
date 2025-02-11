@@ -1,4 +1,4 @@
-basePath: /api
+basePath: /
 definitions:
   models.BlogPost:
     properties:
@@ -14,15 +14,24 @@ definitions:
         type: string
       updated_at:
         type: string
+    type: object
+  models.BlogPostInput:
+    properties:
+      body:
+        type: string
+      description:
+        type: string
+      title:
+        type: string
     required:
     - body
     - description
     - title
     type: object
-host: localhost:3000
+host: blog-api-dag9.onrender.com
 info:
   contact: {}
-  description: A simple blog API
+  description: Blog API with CRUD Operations
   title: Blog API
   version: "1.0"
 paths:
@@ -51,14 +60,14 @@ paths:
         name: blogPost
         required: true
         schema:
-          $ref: '#/definitions/models.BlogPost'
+          $ref: '#/definitions/models.BlogPostInput'
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.BlogPost'
+            $ref: '#/definitions/models.BlogPostInput'
       summary: Create a new blog post
       tags:
       - blog-posts
@@ -121,4 +130,6 @@ paths:
       summary: Update a blog post
       tags:
       - blog-posts
+schemes:
+- https
 swagger: "2.0"

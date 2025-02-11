@@ -3,6 +3,7 @@ package main
 import (
     "blog-api/config"
     "blog-api/routes"
+    _ "blog-api/docs" 
     "log"
     "os"
 
@@ -13,16 +14,33 @@ import (
 
 // @title Blog API
 // @version 1.0
-// @description A simple blog API
-// @host localhost:3000
-// @BasePath /api
+// @description Blog API with CRUD Operations
+// @host blog-api-dag9.onrender.com
+// @BasePath /
+// @schemes https
 func main() {
+    // Initialize database
     config.ConnectDB()
 
-    app := fiber.New()
-    app.Use(cors.New())
+    app := fiber.New(fiber.Config{
+        EnableTrustedProxyCheck: true,
+        TrustedProxies: []string{"0.0.0.0/0"},  // Be careful with this in production
+    })
+
+    // CORS
+    app.Use(cors.New(cors.Config{
+        AllowOrigins: "*",
+        AllowHeaders: "Origin, Content-Type, Accept",
+    }))
+
+    // Serve Swagger files
+    app.Get("/swagger/*", swagger.New(swagger.Config{
+        URL: "doc.json",  // The url pointing to API definition
+        DeepLinking: false,
+    }))
+
+    // Setup routes
     routes.SetupRoutes(app)
-    app.Get("/swagger/*", swagger.HandlerDefault)
 
     port := os.Getenv("PORT")
     if port == "" {
@@ -31,7 +49,3 @@ func main() {
 
     log.Fatal(app.Listen(":" + port))
 }
-
-
-
-

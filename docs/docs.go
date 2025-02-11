@@ -56,7 +56,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.BlogPost"
+                            "$ref": "#/definitions/models.BlogPostInput"
                         }
                     }
                 ],
@@ -64,7 +64,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/models.BlogPost"
+                            "$ref": "#/definitions/models.BlogPostInput"
                         }
                     }
                 }
@@ -163,11 +163,6 @@ const docTemplate = `{
     "definitions": {
         "models.BlogPost": {
             "type": "object",
-            "required": [
-                "body",
-                "description",
-                "title"
-            ],
             "properties": {
                 "body": {
                     "type": "string"
@@ -188,6 +183,25 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
+        },
+        "models.BlogPostInput": {
+            "type": "object",
+            "required": [
+                "body",
+                "description",
+                "title"
+            ],
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
         }
     }
 }`
@@ -195,11 +209,11 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:3000",
-	BasePath:         "/api",
-	Schemes:          []string{},
+	Host:             "blog-api-dag9.onrender.com",
+	BasePath:         "/",
+	Schemes:          []string{"https"},
 	Title:            "Blog API",
-	Description:      "A simple blog API",
+	Description:      "Blog API with CRUD Operations",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

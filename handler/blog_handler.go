@@ -14,17 +14,17 @@ import (
 // @Tags blog-posts
 // @Accept json
 // @Produce json
-// @Param blogPost body models.BlogPost true "Blog post object"
-// @Success 201 {object} models.BlogPost
+// @Param blogPost body models.BlogPostInput true "Blog post object"
+// @Success 201 {object} models.BlogPostInput
 // @Router /api/blog-post [post]
 func CreateBlogPost(c *fiber.Ctx) error {
-    blogPost := new(models.BlogPost)
+    blogPost := new(models.BlogPostInput)
     if err := c.BodyParser(blogPost); err != nil {
         return c.Status(400).JSON(fiber.Map{"error": "Invalid input"})
     }
 
-    blogPost.CreatedAt = time.Now()
-    blogPost.UpdatedAt = time.Now()
+    // blogPost.CreatedAt = time.Now()
+    // blogPost.UpdatedAt = time.Now()
 
     if err := config.DB.Create(&blogPost).Error; err != nil {
         return c.Status(500).JSON(fiber.Map{"error": "Could not create blog post"})
