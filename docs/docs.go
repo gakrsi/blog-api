@@ -56,7 +56,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.BlogPostInput"
+                            "$ref": "#/definitions/models.BlogPost"
                         }
                     }
                 ],
@@ -64,7 +64,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/models.BlogPostInput"
+                            "$ref": "#/definitions/models.BlogPost"
                         }
                     }
                 }
@@ -180,25 +180,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "models.BlogPostInput": {
-            "type": "object",
-            "required": [
-                "body",
-                "description",
-                "title"
-            ],
-            "properties": {
-                "body": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "title": {
                     "type": "string"
                 }
             }

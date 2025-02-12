@@ -15,19 +15,6 @@ definitions:
       updated_at:
         type: string
     type: object
-  models.BlogPostInput:
-    properties:
-      body:
-        type: string
-      description:
-        type: string
-      title:
-        type: string
-    required:
-    - body
-    - description
-    - title
-    type: object
 host: blog-api-dag9.onrender.com
 info:
   contact: {}
@@ -60,14 +47,14 @@ paths:
         name: blogPost
         required: true
         schema:
-          $ref: '#/definitions/models.BlogPostInput'
+          $ref: '#/definitions/models.BlogPost'
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.BlogPostInput'
+            $ref: '#/definitions/models.BlogPost'
       summary: Create a new blog post
       tags:
       - blog-posts

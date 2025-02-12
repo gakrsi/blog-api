@@ -14,11 +14,11 @@ import (
 // @Tags blog-posts
 // @Accept json
 // @Produce json
-// @Param blogPost body models.BlogPostInput true "Blog post object"
-// @Success 201 {object} models.BlogPostInput
+// @Param blogPost body models.BlogPost true "Blog post object"
+// @Success 201 {object} models.BlogPost
 // @Router /api/blog-post [post]
 func CreateBlogPost(c *fiber.Ctx) error {
-    blogPost := new(models.BlogPostInput)
+    blogPost := new(models.BlogPost)
     if err := c.BodyParser(blogPost); err != nil {
         return c.Status(400).JSON(fiber.Map{"error": "Invalid input"})
     }
