@@ -53,7 +53,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.BlogPostInput"
+                            "$ref": "#/definitions/models.BlogPost"
                         }
                     }
                 ],
@@ -61,7 +61,7 @@
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/models.BlogPostInput"
+                            "$ref": "#/definitions/models.BlogPost"
                         }
                     }
                 }
@@ -177,25 +177,6 @@
                     "type": "string"
                 },
                 "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "models.BlogPostInput": {
-            "type": "object",
-            "required": [
-                "body",
-                "description",
-                "title"
-            ],
-            "properties": {
-                "body": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "title": {
                     "type": "string"
                 }
             }
